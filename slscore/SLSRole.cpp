@@ -23,9 +23,11 @@
  */
 
 
+#include <chrono>
 #include <errno.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <thread>
 
 #include "SLSRole.hpp"
 #include "SLSLog.hpp"
@@ -629,6 +631,7 @@ int  CSLSRole::on_close()
 			m_http_url, m_role_name, get_streamid(), m_peer_ip, m_peer_port);
 
 	int ret = m_http_client->open(on_event_url);
+    	std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	return ret;
 }
 
